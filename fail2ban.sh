@@ -16,8 +16,6 @@ echo "This Shell Script only support ubuntu 20.04!!!"
 echo ""
 
 while :; do echo
-  read -p "Is your SSH Port = 22? [y/n]: " IfChangeSSHPort
-  if [ ${IfChangeSSHPort} == 'n' ]; then
     if [ -e "/etc/ssh/sshd_config" ];then
     while :; do echo
         read -p "Please input SSH port(Default: $ssh_port): " SSH_PORT
@@ -29,13 +27,6 @@ while :; do echo
         fi
     done
     fi
-    break
-  elif [ ${IfChangeSSHPort} == 'y' ]; then
-  SSH_PORT=22
-    break
-  else
-    echo "${CWARNING}Input error! Please only input y or n!${CEND}"
-  fi
 done
 ssh_port=$SSH_PORT
 echo "ssh port =" $ssh_port
