@@ -31,6 +31,7 @@ while :; do echo
     fi
     break
   elif [ ${IfChangeSSHPort} == 'y' ]; then
+  SSH_PORT=22
     break
   else
     echo "${CWARNING}Input error! Please only input y or n!${CEND}"
