@@ -38,6 +38,7 @@ while :; do echo
   fi
 done
 ssh_port=$SSH_PORT
+echo "ssh port = 22"
 echo $ssh_port
 echo ""
 echo ""
@@ -59,10 +60,15 @@ apt-get -y update
 apt-get -y install fail2ban
 apt-get -y install ufw
 
-ufw allow 22
-ufw allow $ssh_port
-ufw allow 80
-ufw allow 443
+ if [ $ssh_port -eq 22 ];then
+	ufw allow 22
+	ufw allow 80
+	ufw allow 443
+ else
+	ufw allow $ssh_port
+	ufw allow 80
+	ufw allow 443
+ fi
 
 systemctl start ufw
 systemctl enable ufw
