@@ -72,7 +72,7 @@ apt-get -y install ufw
 
 systemctl start ufw
 systemctl enable ufw
-ufw enable
+ufw --force enable
 
 #Configure
 rm -rf /etc/fail2ban/jail.local
