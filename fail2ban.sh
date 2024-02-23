@@ -38,7 +38,7 @@ while :; do echo
   fi
 done
 ssh_port=$SSH_PORT
-echo "ssh port = 22"
+echo "ssh port =" $ssh_port
 echo $ssh_port
 echo ""
 echo ""
