@@ -17,7 +17,7 @@ echo ""
 
 while :; do echo
   read -p "Is your SSH Port = 22? [y/n]: " IfChangeSSHPort
-  if [ ${IfChangeSSHPort} == 'y' ]; then
+  if [ ${IfChangeSSHPort} == 'n' ]; then
     if [ -e "/etc/ssh/sshd_config" ];then
     while :; do echo
         read -p "Please input SSH port(Default: $ssh_port): " SSH_PORT
@@ -30,7 +30,7 @@ while :; do echo
     done
     fi
     break
-  elif [ ${IfChangeSSHPort} == 'n' ]; then
+  elif [ ${IfChangeSSHPort} == 'y' ]; then
     break
   else
     echo "${CWARNING}Input error! Please only input y or n!${CEND}"
