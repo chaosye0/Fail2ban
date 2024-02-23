@@ -1,5 +1,7 @@
 # Fail2ban #
-这是一个利用iptables和开源程序fail2ban来进行服务器简单防爆破的脚本。默认自带SSH防御规则。
+这是一个利用fail2ban和ufw来进行服务器简单防爆破的脚本。默认自带SSH防御规则。
+
+在原版基础上改用了ufw，只适用于ubuntu 20.04!!!!
 
 # 功能 #
 - 自助修改SSH端口
@@ -8,11 +10,8 @@
 - 一键完成SSH防止暴力破解
 
 # 支持系统 #
-- Centos 6/7 (x86/x64)
-- Ubuntu 14.04 (x86/x64)
-- Ubuntu 16.10 (x86/x64)
-- Debian 7 (x86/x64)
-- Debian 8 (x86/x64)
+- Ubuntu 20.04 (x86/x64)
+
 
 # 安装 #
     wget https://raw.githubusercontent.com/FunctionClub/Fail2ban/master/fail2ban.sh && bash fail2ban.sh 2>&1 | tee fail2ban.log
@@ -22,18 +21,8 @@
 
 # 卸载 #
     wget https://raw.githubusercontent.com/FunctionClub/Fail2ban/master/uninstall.sh && bash uninstall.sh
-
-# 注意事项 #
-1. 安装完成后请会重启SSH服务，请重新连接SSH会话
-2. 若出现SSH无法连接的情况，请检查是否修改过SSH端口，请填写写改后的正确端口进行连接
-
-# 更新日志 #
-2016.11.15 第一次提交，初步完成。
-
-# 关于 #
-Made by [FunctionClub](http://function.club "FunctionClub")
-QQ群：277717865
-
-# 鸣谢 #
-- [Fail2ban](http://www.fail2ban.org "Fail2ban")
-- [Oneinstack](http://oneinstack.com "Oneinstack")
+    
+service fail2ban stop
+rm -r /etc/fail2ban/
+apt-get -y purge fail2ban 
+rm fail2ban.* uninstall.*
