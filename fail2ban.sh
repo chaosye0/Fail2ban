@@ -84,7 +84,6 @@ findtime = 1800
 
 [ssh-ufw]
 enabled = true
-filter = sshd
 banaction = ufw
 banaction_allports = ufw
 logpath = /var/log/auth.log
