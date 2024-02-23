@@ -17,17 +17,6 @@ while :; do echo
     if [ -e "/etc/ssh/sshd_config" ];then
     while :; do echo
         read -p "Please input SSH port(Default: $ssh_port): " SSH_PORT
-
-    
-        
-          
-    
-
-        
-        Expand All
-    
-    @@ -29,13 +27,6 @@ while :; do echo
-  
         [ -z "$SSH_PORT" ] && SSH_PORT=$ssh_port
         if [ $SSH_PORT -eq 22 >/dev/null 2>&1 -o $SSH_PORT -gt 1024 >/dev/null 2>&1 -a $SSH_PORT -lt 65535 >/dev/null 2>&1 ];then
             break
@@ -46,17 +35,6 @@ while :; do echo
 done
 ssh_port=$SSH_PORT
 echo "ssh port =" $ssh_port
-
-    
-          
-            
-    
-
-          
-          Expand Down
-    
-    
-  
 echo $ssh_port
 echo ""
 echo ""
