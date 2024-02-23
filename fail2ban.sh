@@ -89,6 +89,7 @@ findtime = 1800
 enabled = true
 banaction = ufw
 banaction_allports = ufw
+filter = sshd
 logpath = /var/log/auth.log
 maxretry = $maxretry
 findtime = 3600
