@@ -37,8 +37,7 @@ while :; do echo
   fi
 done
 ssh_port=$SSH_PORT
-echo ""
-	$ssh_port
+echo "$ssh_port"
 echo ""
 echo ""
 	read -p "Input the maximun times for trying [2-10]:  " maxretry
