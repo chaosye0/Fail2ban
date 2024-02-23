@@ -58,30 +58,23 @@ fi
 #Install
 
 
-  apt-get -y update
-  apt-get -y install fail2ban
+apt-get -y update
+apt-get -y install fail2ban
+apt-get -y install ufw
+
+ufw allow 22
+ufw allow $ssh_port
+ufw allow 80
+ufw allow 443
+
+systemctl start ufw
+systemctl enable ufw
+ufw enable
 
 #Configure
 rm -rf /etc/fail2ban/jail.local
 touch /etc/fail2ban/jail.local
-if [ ${OS} == CentOS ]; then
-cat <<EOF >> /etc/fail2ban/jail.local
-[DEFAULT]
-ignoreip = 127.0.0.1
-bantime = 86400
-maxretry = 3
-findtime = 1800
 
-[ssh-iptables]
-enabled = true
-filter = sshd
-action = iptables[name=SSH, port=ssh, protocol=tcp]
-logpath = /var/log/secure
-maxretry = $maxretry
-findtime = 3600
-bantime = $bantime
-EOF
-else
 cat <<EOF >> /etc/fail2ban/jail.local
 [DEFAULT]
 ignoreip = 127.0.0.1
@@ -89,16 +82,17 @@ bantime = 86400
 maxretry = $maxretry
 findtime = 1800
 
-[ssh-iptables]
+[ssh-ufw]
 enabled = true
 filter = sshd
-action = iptables[name=SSH, port=ssh, protocol=tcp]
+banaction = ufw
+banaction_allports = ufw
 logpath = /var/log/auth.log
 maxretry = $maxretry
 findtime = 3600
 bantime = $bantime
 EOF
-fi
+
 
 #Start
     systemctl restart fail2ban
