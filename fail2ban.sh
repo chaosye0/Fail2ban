@@ -16,6 +16,7 @@ echo "This Shell Script only support ubuntu 20.04!!!"
 echo ""
 
 while :; do echo
+    [ -z "`grep ^Port /etc/ssh/sshd_config`" ] && ssh_port=22 || ssh_port=`grep ^Port /etc/ssh/sshd_config | awk '{print $2}'`
     if [ -e "/etc/ssh/sshd_config" ];then
     while :; do echo
         read -p "Please input SSH port(Default: $ssh_port): " SSH_PORT
