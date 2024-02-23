@@ -16,10 +16,9 @@ echo "This Shell Script only support ubuntu 20.04!!!"
 echo ""
 
 while :; do echo
-  read -p "Do you want to change your SSH Port? [y/n]: " IfChangeSSHPort
+  read -p "Is your SSH Port = 22? [y/n]: " IfChangeSSHPort
   if [ ${IfChangeSSHPort} == 'y' ]; then
     if [ -e "/etc/ssh/sshd_config" ];then
-    [ -z "`grep ^Port /etc/ssh/sshd_config`" ] && ssh_port=22 || ssh_port=`grep ^Port /etc/ssh/sshd_config | awk '{print $2}'`
     while :; do echo
         read -p "Please input SSH port(Default: $ssh_port): " SSH_PORT
         [ -z "$SSH_PORT" ] && SSH_PORT=$ssh_port
@@ -29,11 +28,6 @@ while :; do echo
             echo "${CWARNING}input error! Input range: 22,1025~65534${CEND}"
         fi
     done
-    if [ -z "`grep ^Port /etc/ssh/sshd_config`" -a "$SSH_PORT" != '22' ];then
-        sed -i "s@^#Port.*@&\nPort $SSH_PORT@" /etc/ssh/sshd_config
-    elif [ -n "`grep ^Port /etc/ssh/sshd_config`" ];then
-        sed -i "s@^Port.*@Port $SSH_PORT@" /etc/ssh/sshd_config
-    fi
     fi
     break
   elif [ ${IfChangeSSHPort} == 'n' ]; then
@@ -43,6 +37,9 @@ while :; do echo
   fi
 done
 ssh_port=$SSH_PORT
+echo ""
+	$ssh_port
+echo ""
 echo ""
 	read -p "Input the maximun times for trying [2-10]:  " maxretry
 echo ""
@@ -63,7 +60,7 @@ apt-get -y install fail2ban
 apt-get -y install ufw
 
 ufw allow 22
-ufw allow <$ssh_port>
+ufw allow $ssh_port
 ufw allow 80
 ufw allow 443
 
