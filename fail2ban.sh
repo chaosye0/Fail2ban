@@ -63,7 +63,7 @@ apt-get -y install fail2ban
 apt-get -y install ufw
 
 ufw allow 22
-ufw allow $ssh_port
+ufw allow <$ssh_port>
 ufw allow 80
 ufw allow 443
 
