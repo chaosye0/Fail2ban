@@ -20,9 +20,4 @@
 1. 第三部输入每个恶意IP的封禁时间（单位：小时）
 
 # 卸载 #
-    wget https://raw.githubusercontent.com/FunctionClub/Fail2ban/master/uninstall.sh && bash uninstall.sh
-    
-service fail2ban stop
-rm -r /etc/fail2ban/
-apt-get -y purge fail2ban 
-rm fail2ban.* uninstall.*
+    wget https://raw.githubusercontent.com/chaosye0/Fail2ban/master/uninstall.sh && bash uninstall.sh
