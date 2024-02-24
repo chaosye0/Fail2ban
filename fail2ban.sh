@@ -52,6 +52,7 @@ fi
 apt-get -y update
 apt-get -y install fail2ban
 apt-get -y install ufw
+ufw default allow
  if [ $ssh_port -eq 22 ];then
 	ufw allow 22
 	ufw allow 80
